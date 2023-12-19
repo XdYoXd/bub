@@ -1,0 +1,24 @@
+# comment
+
+# ./bub -f build.bub
+
+const SRC = *.cpp
+const OUT_FILE = xd.bin
+const FLAGS = -static -Wno-macro-redefined -o ${OUT_FILE}
+
+
+RULE compile {
+    COMMAND = cd d && g++ ${SRC} ${FLAGS}
+    DESCRIPTION = COMPILE ${OUT_FILE}
+    OUTPUT = stdout
+    ERRORS = stderr
+}
+
+RULE run {
+    COMMAND = cd d && ./${OUT_FILE}
+    OUTPUT = stdout
+    ERRORS = stderr
+}
+
+
+BUILD: compile run
